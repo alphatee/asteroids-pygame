@@ -4,3 +4,6 @@ SCREEN_HEIGHT = 720
 #player ship
 PLAYER_RADIUS = 20
 LINE_WIDTH = 2
+
+#moving around 
+PLAYER_TURN_SPEED = 300
