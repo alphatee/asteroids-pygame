@@ -9,6 +9,11 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    # create two new empty groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    # add the Player class to these two groups before the player object instance is created
+    Player.containers = (updatable, drawable)
     the_player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
  
     # create clock 
@@ -23,8 +28,9 @@ def main():
                 return
 
         screen.fill("black")
-        the_player.draw(screen)
-        the_player.update(dt)
+        for draw in drawable:
+            draw.draw(screen)
+        updatable.update(dt)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
 
